@@ -1,3 +1,5 @@
+// but with the arrow function we can bind the value of this keyword;
+
 import React from "react";
 class CartItem extends React.Component {
   constructor() {
@@ -9,6 +11,10 @@ class CartItem extends React.Component {
       img: "",
     };
   }
+
+  increaseQuantity = () => {
+    console.log("this", this.state);
+  };
   render() {
     const { price, title, qty } = this.state;
     return (
@@ -30,7 +36,9 @@ class CartItem extends React.Component {
               alt="increase"
               className="actions-icons"
               src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+              onClick={this.increaseQuantity() /* .bind(this) */}
             />
+
             <img
               alt="decrease"
               className="actions-icons"
