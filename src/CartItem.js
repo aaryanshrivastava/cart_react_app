@@ -1,5 +1,8 @@
 // but with the arrow function we can bind the value of this keyword;
-
+//setState : concept of batching is involved in this. Thus in an eventhandler no matter how many times you call, the setState call will
+//           only be implement once, thus merging all calls in single state call. This is done to make efficiency better. I always selects
+//           the last value not the most one as a part of the shallow selecting or Batching.
+//           setState call is asynchronous.
 import React from "react";
 class CartItem extends React.Component {
   constructor() {
@@ -28,7 +31,10 @@ class CartItem extends React.Component {
     });
   };
   decreaseQuantity = () => {
-    console.log("this", this.state);
+    const { qty } = this.state;
+    if (qty == 0) {
+      return;
+    }
     this.setState((prevState) => {
       return {
         qty: prevState.qty - 1,
