@@ -19,20 +19,22 @@ class CartItem extends React.Component {
       qty: 1,
       img: "",
     };
-    this.testing();
+    // this.testing();
   }
-  testing() {
-    const promise = new Promise((resolve, reject) => {
-      //setState acts like a synchronous call, so thus we can we the up to date state.
-      setTimeout(() => {
-        resolve("done");
-      }, 5000);
-    });
-    promise.then(() => {
-      this.setState({ qty: 100 });
-      console.log("state", this.state);
-    });
-  }
+
+  // testing() {
+  //   const promise = new Promise((resolve, reject) => {
+  //     //setState acts like a synchronous call, so thus we can we the up to date state.
+  //     setTimeout(() => {
+  //       resolve("done");
+  //     }, 5000);
+  //   });
+  //   promise.then(() => {
+  //     this.setState({ qty: 100 });
+  //     console.log("state", this.state);
+  //   });
+  // }
+
   increaseQuantity = () => {
     console.log("this", this.state);
 
