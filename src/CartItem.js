@@ -1,8 +1,14 @@
 // but with the arrow function we can bind the value of this keyword;
 //setState : concept of batching is involved in this. Thus in an eventhandler no matter how many times you call, the setState call will
 //           only be implement once, thus merging all calls in single state call. This is done to make efficiency better. I always selects
-//           the last value not the most one as a part of the shallow selecting or Batching.
+//           the last value not the most one as a part of the shallow merging or Batching
+//           setState does batching as in for default for each eventHandlers, but AJAX call or the promises react doesnt do,
+//           do batching for us so it might act as a synchronous call too.
 //           setState call is asynchronous.
+//           when you call setState() inside render() method,setState() invokes render().It gets into an infinite loop.
+//           When setState is called multiple times it is batched together and re render happens only once.
+//           The callbacks for both setStates will be fired after re render.
+
 import React from "react";
 class CartItem extends React.Component {
   constructor() {
@@ -13,8 +19,20 @@ class CartItem extends React.Component {
       qty: 1,
       img: "",
     };
+    this.testing();
   }
-
+  testing() {
+    const promise = new Promise((resolve, reject) => {
+      //setState acts like a synchronous call, so thus we can we the up to date state.
+      setTimeout(() => {
+        resolve("done");
+      }, 5000);
+    });
+    promise.then(() => {
+      this.setState({ qty: 100 });
+      console.log("state", this.state);
+    });
+  }
   increaseQuantity = () => {
     console.log("this", this.state);
 
