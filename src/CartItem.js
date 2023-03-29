@@ -7,7 +7,7 @@
 //           setState call is asynchronous.
 //           when you call setState() inside render() method,setState() invokes render().It gets into an infinite loop.
 //           When setState is called multiple times it is batched together and re render happens only once.
-//           The callbacks for both setStates will be fired after re render.
+//           The callbacks for both setStates will be fired after re-render.
 
 import React from "react";
 
